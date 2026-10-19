@@ -1,0 +1,4 @@
+# Install only PyPI wheels, no source compilation:
+# python -m pip install --index-url https://pypi.org/simple --only-binary=:all: -r requirements.txt
+python-pptx>=1.0.2,<2
+lxml>=5.0,<7

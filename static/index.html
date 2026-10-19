@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>SlideScope — PowerPoint Browser Harness</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/viewer.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><div class="brand-name">SLIDESCOPE <small>/ PPTX INSPECTOR</small></div></div>
+      <div class="file-status"><span class="ready-dot"></span><span id="fileName" title="Loaded presentation">No presentation loaded</span></div>
+      <div class="top-actions"><span class="private-pill">LOCAL ONLY</span><label class="load-button reference-load" for="referencePicker" title="Load the PowerPoint-exported Slide1.PNG, Slide2.PNG… ZIP">Open reference ZIP</label><input type="file" id="referencePicker" accept=".zip,application/zip" hidden /><label class="load-button" for="filePicker">Open PPTX <span class="load-key">⇧ O</span></label><input type="file" id="filePicker" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation" hidden /></div>
+    </header>
+    <div class="workspace">
+      <aside class="slides-rail" id="slidesRail" aria-label="Slide thumbnails">
+        <div class="rail-head"><span>SLIDES</span><span id="slideCount">00</span></div>
+        <div id="thumbs" class="thumb-list"></div>
+        <div class="rail-foot">← → Navigate slides</div>
+      </aside>
+      <main class="main-pane" id="mainPane">
+        <div class="canvas-toolbar"><div class="crumb"><span class="mini-square"></span><span id="slideNumber">SLIDE — / —</span><span class="sep">/</span><span id="slideTitle">Presentation workspace</span></div><div class="canvas-controls"><button id="prevSlide" data-testid="slide-prev" title="Previous slide (Left Arrow)" aria-label="Previous slide">‹</button><button id="nextSlide" data-testid="slide-next" title="Next slide (Right Arrow)" aria-label="Next slide">›</button><div class="tool-sep"></div><button id="zoomOut" title="Zoom out">−</button><button id="zoomLabel" title="Fit to window" class="zoom-label">FIT</button><button id="zoomIn" title="Zoom in">+</button><div class="tool-sep"></div><button id="toggleBounds" title="Show object bounds (B)">BOUNDS</button><button id="compareMode" data-testid="compare-mode" title="Cycle PowerPoint reference: split / original / overlay / off">COMPARE: OFF</button></div></div>
+        <div id="stageViewport" class="stage-viewport" data-testid="stage-viewport">
+          <div class="grid-backdrop" aria-hidden="true"></div>
+          <div id="stageHolder" class="stage-holder"><div id="slideCanvas" class="slide-canvas" data-testid="slide-canvas" aria-label="Rendered slide"></div></div>
+          <div id="emptyState" class="empty-state">
+            <div class="empty-art"><div class="empty-page page-behind"></div><div class="empty-page page-front"><span class="preview-header"></span><span class="preview-huge"></span><span class="preview-medium"></span><span class="preview-block"></span></div></div>
+            <div class="empty-kicker">READY FOR INSPECTION</div>
+            <h1>PowerPoint, meet the browser.</h1>
+            <p>Open a <strong>.pptx</strong> to see its slides, select objects, and inspect layout through Playwright—all on your machine.</p>
+            <label for="filePicker" class="hero-button">Choose a PowerPoint <span>↗</span></label>
+            <span class="drop-hint">or drop a .pptx anywhere in this window</span>
+          </div>
+        </div>
+        <div class="statusbar"><span><span class="status-led"></span><span id="statusText">Waiting for presentation</span></span><span id="slideDimensions">PPTX / LOCAL RENDER</span></div>
+      </main>
+      <aside class="inspector" id="inspector" aria-label="Object inspector"><div class="inspector-head"><span>INSPECTOR</span><span class="inspector-icon">⌗</span></div><div id="inspectorContent"><div class="inspect-empty"><div class="inspect-symbol">⌖</div><h2>Object details</h2><p>Select a shape, image, or text box on a slide to inspect its coordinates and properties.</p></div></div><div class="diagnostics"><div class="diagnostics-head"><span>RENDER DIAGNOSTICS</span><span id="warningCount" class="warning-count">0</span></div><div id="issues" class="issues"><span class="issue-ok">No presentation loaded</span></div></div><div class="inspector-foot">DOM-ACCESSIBLE · PLAYWRIGHT-READY</div></aside>
+    </div>
+  </div>
+  <div id="dropOverlay" class="drop-overlay"><div>DROP POWERPOINT TO PREVIEW <span>↓</span></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
